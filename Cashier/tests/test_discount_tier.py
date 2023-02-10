@@ -21,3 +21,9 @@ def test_discount_tier():
 
     total_price_to_be_paid = discount_tier.getTotalPrice(300000)
     assert(total_price_to_be_paid == 276000)
+
+    total_price_to_be_paid = discount_tier.getTotalPrice(500000)
+    assert(total_price_to_be_paid == 450000)
+
+    total_price_to_be_paid = discount_tier.getTotalPrice(600000)
+    assert(total_price_to_be_paid == 540000)

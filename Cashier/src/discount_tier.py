@@ -16,7 +16,7 @@ class DiscountTier:
         while amount_to_be_paid == 0:
             if amount >= self.discount_tiers[i].amount:
                 amount_to_be_paid = ceil(amount - (amount * self.discount_tiers[i].discount)) 
-            elif i == len(self.discount_tiers):
+            elif i == len(self.discount_tiers) - 1:
                 amount_to_be_paid = amount
             else:
                 i+=1
