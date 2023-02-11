@@ -20,16 +20,18 @@ class Cart:
     def reset_transaction(self):
         self.items.clear()
 
-    def remove_items(name: str):
-        pass
-    
+    def remove_items(self, name: str):
+        self.items.pop(name.strip().upper())
+
     def generate_items(self):
         new_items = []
         total_price = 0
         item = Item("", 0, 0)
+        i = 1
         for key in self.items.keys():
             item = self.items.get(key)
             temp = []
+            temp.append(i)
             temp.append(item.item_name)
             temp.append(item.qty)
             temp.append(f"Rp {item.price}")
@@ -37,15 +39,18 @@ class Cart:
             temp.append(f"Rp {amount}")
             total_price += amount
             new_items.append(temp)
+            i+=1
 
         temp = []
         temp.append("")
         temp.append("")
         temp.append("")
-        temp.append(f"Sebelum diskon {total_price}")
+        temp.append("")
+        temp.append(f"\nSebelum diskon {total_price}")
         new_items.append(temp)
 
         temp = []
+        temp.append("")
         temp.append("")
         temp.append("")
         temp.append("")

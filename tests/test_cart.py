@@ -77,7 +77,7 @@ class TestCart(unittest.TestCase):
         new_item_to_be_added = Item(item_name= "gogo", qty= 3, price= 1700)
         cart_items.add_item(new_item_to_be_added)
 
-        cart_items.remove_items("Teh KoTAk")
+        cart_items.remove_items("Teh KoTAk    ")
         self.assertTrue(cart_items.items.get("TEH KOTAK") == None)
 
 
