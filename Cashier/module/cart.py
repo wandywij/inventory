@@ -20,6 +20,9 @@ class Cart:
     def reset_transaction(self):
         self.items.clear()
 
+    def remove_items(name: str):
+        pass
+    
     def generate_items(self):
         new_items = []
         total_price = 0
