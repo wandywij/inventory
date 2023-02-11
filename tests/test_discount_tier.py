@@ -1,8 +1,7 @@
 
-from src import discount_tier
-from src import discount
+from cashier.module.discount_tier import DiscountTier
 
-discount_tier = discount_tier.DiscountTier()
+discount_tier = DiscountTier()
 
 def test_discount_tier():
     

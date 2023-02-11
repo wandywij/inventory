@@ -1,10 +1,13 @@
 from math import ceil
-from src import discount
+try:
+    from discount import Discount
+except:
+    from cashier.module.discount import Discount
 
 class DiscountTier:
-    discount_tiers = [discount.Discount(200000, 0.05),
-                      discount.Discount(300000, 0.08), 
-                      discount.Discount(500000, 0.1)]
+    discount_tiers = [Discount(200000, 0.05),
+                      Discount(300000, 0.08), 
+                      Discount(500000, 0.1)]
 
     def __init__(self) -> None:
         pass
