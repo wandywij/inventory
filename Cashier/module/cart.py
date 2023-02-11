@@ -41,6 +41,8 @@ class Cart:
             new_items.append(temp)
             i+=1
 
+  
+
         temp = []
         temp.append("")
         temp.append("")
@@ -54,7 +56,15 @@ class Cart:
         temp.append("")
         temp.append("")
         temp.append("")
-        temp.append(f"Setelah diskon {DiscountTier().getTotalPrice(amount= total_price)}")
+        temp.append(f"\ndiskon {DiscountTier().getDiscount( amount= total_price)}")
+        new_items.append(temp)
+
+        temp = []
+        temp.append("")
+        temp.append("")
+        temp.append("")
+        temp.append("")
+        temp.append(f"Setelah diskon {DiscountTier().getTotalPrice( amount= total_price)}")
         new_items.append(temp)
         
         return new_items

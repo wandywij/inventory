@@ -11,8 +11,10 @@ def menu():
     print("-"*60)
     print("1. Input Barang")
     print("2. Hapus Barang")
-    print("3. Update Barang")
-    print("4. Reset Transaction")
+    print("3. Update Nama Barang")
+    print("4. Update Quantity Barang")
+    print("5. Update Harga Barang")
+    print("6. Reset Transaction")
     print("9. Check Order")
     print("0. Exit\n")
     
@@ -21,11 +23,17 @@ def menu():
         add_item(InputState.NAME, Item(item_name= "", qty= 0, price= 0))
     if choice == 2:
         check_order()
-        remove_item()
+        delete_item()
     elif choice == 3:
         check_order()
-        update_item()
+        update_item_name()
     elif choice == 4:
+        check_order()
+        update_item_qty()
+    elif choice == 5:
+        check_order()
+        update_item_price()
+    elif choice == 6:
         cart.reset_transaction()
         print(f"Keranjang anda berhasil dihapus\n {len(cart.items)}")
         menu()
@@ -48,7 +56,17 @@ def _check_if_item_already_exist(item_name: str) -> bool:
         pass
     return count is not None and count.item_name != ""
 
-def remove_item():
+def _get_item(item_name: str) -> Item:
+    if len(cart.items) == 0:
+        return False
+    count = Item("", 0, 0)
+    try:
+        count = cart.items.get(item_name.strip().upper())
+    except Exception as e:
+        pass
+    return count 
+
+def delete_item():
     item_name = str(input("Masukkan nama barang yang ingin dihapus: "))
     item_is_exist = _check_if_item_already_exist(item_name)
     if item_is_exist:
@@ -64,6 +82,38 @@ def update_item():
     item_is_exist = _check_if_item_already_exist(item_name)
     if item_is_exist:
         add_item(InputState.QUANTITY, Item(item_name= item_name, qty=0,price= 0))
+    else: 
+        print(f"Item dengan nama {item_name} tidak ditemukan dalam keranjang belanjaan anda")
+        menu()
+
+def update_item_qty():
+    item_name = str(input("Masukkan nama barang yang ingin diupdate: "))
+    item = _get_item(item_name)
+    if item is not None:
+        new_qty = int(input("Masukkan quantity baru : "))
+        add_item(InputState.DONE, Item(item_name= item.item_name, qty=new_qty, price= item.price))
+    else: 
+        print(f"Item dengan nama {item_name} tidak ditemukan dalam keranjang belanjaan anda")
+        menu()
+
+def update_item_price():
+    item_name = str(input("Masukkan nama barang yang ingin diupdate: "))
+    item = _get_item(item_name)
+    if item is not None:
+        new_price = int(input("Masukkan harga baru : "))
+        add_item(InputState.DONE, Item(item_name= item.item_name, qty=item.qty, price= new_price))
+    else: 
+        print(f"Item dengan nama {item_name} tidak ditemukan dalam keranjang belanjaan anda")
+        menu()
+
+def update_item_name():
+    item_name = str(input("Masukkan nama barang yang ingin diupdate: "))
+    item = _get_item(item_name)
+    if item is not None:
+        new_name = str(input("Masukkan nama baru : "))
+        cart.remove_items(item_name)
+        add_item(InputState.DONE, Item(item_name= new_name, qty=item.qty, price= item.price))
+        
     else: 
         print(f"Item dengan nama {item_name} tidak ditemukan dalam keranjang belanjaan anda")
         menu()
@@ -98,6 +148,7 @@ def add_item(inputState: InputState, item: Item):
             add_item(InputState.PRICE, Item(item_name= item.item_name, price= item.price, qty= item.qty))
     elif inputState == InputState.DONE:
         cart.add_item(Item(item_name= item.item_name, qty= item.qty, price= item.price))
+        check_order()
         menu()
 
 def check_order():

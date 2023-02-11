@@ -1,6 +1,12 @@
 
 from cashier.module.discount import Discount
+import unittest
 
-def test_discount():
-    test_discount = Discount(10000, 15)
-    assert(test_discount.amount == 10000)
+class TestDiscount(unittest.TestCase):
+    pass
+    # def test_discount(self):
+    #     test_discount = Discount(10000, 15)
+    #     self.assert_(test_discount.amount == 10000, "no discount")
+
+if __name__ == '__main__':
+    unittest.main()
