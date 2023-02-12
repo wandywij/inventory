@@ -40,6 +40,8 @@ def menu():
     elif choice == 9:
         check_order()
         menu()
+    elif choice == 0:
+        pass
     else:
         print("Menu yang anda pilih tidak tersedia")
         menu()
