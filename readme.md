@@ -18,4 +18,7 @@ Flow of the program :
 
 
 Example : 
-![alt text](https://hosting.photobucket.com/images/vv195/Billiel_/Screen_Shot_2023-02-12_at_20.08.16.png)
+![alt text](https://github.com/wandywij/inventory/blob/development/assets/image1.png)
+![alt text](https://github.com/wandywij/inventory/blob/development/assets/image2.png)
+![alt text](https://github.com/wandywij/inventory/blob/development/assets/image3.png)
+
